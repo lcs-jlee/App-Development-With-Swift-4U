@@ -8,7 +8,7 @@ var friends = 50
 /*:
  Now assume you go through and remove friends that aren't active on social media. Attempt to update your `friends` constant to a lower number than it currently is. Observe what happens and then move to the next step.
  */
-friends = 49
+friends = 48
 
 
 /*:
