@@ -17,7 +17,12 @@ someNumber += 5
  
  Print the balance of your piggy bank after each step.
  */
-
+var piggyBank = 0
+piggyBank += 20
+piggyBank /= 2
+piggyBank *= 3
+piggyBank -= 3
+print(piggyBank)
 
 
 
