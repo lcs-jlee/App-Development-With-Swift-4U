@@ -51,4 +51,5 @@ struct Height {
 
 var height = Height(heightInCentimeters: 188)
 height.heightInCentimeters = 180
+height.heightInCentimeters = 180
 //: [Previous](@previous)  |  page 7 of 10  |  [Next: App Exercise - Mile Times and Congratulations](@next)
