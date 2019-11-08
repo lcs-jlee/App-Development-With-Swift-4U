@@ -7,6 +7,13 @@ class Spaceship {
     let name: String
     var health: Int
     var position: Int
+    
+    init(name: String, health: Int, position: Int) {
+        self.name = name
+        self.health = health
+        self.position = position
+    }
+   
 
     func moveLeft() {
         position -= 1
@@ -27,6 +34,14 @@ class Spaceship {
 class Fighter: Spaceship {
     let weapon: String
     var remainingFirePower: Int
+    
+    
+    init(name: String, health: Int, position: Int, weapon: String, remainingFirePower: Int) {
+        self.weapon = weapon
+        self.remainingFirePower = remainingFirePower
+        super.init(name: name, health: health, position: position)
+    }
+    
 
     func fire() {
         if remainingFirePower > 0 {
@@ -39,7 +54,12 @@ class Fighter: Spaceship {
 
 class ShieldedShip: Fighter {
     var shieldStrength: Int
-
+    
+    
+    init(name: String, health: Int, position: Int, weapon: String, remainingFirePower: Int, shieldStrength: Int) {
+        self.shieldStrength = shieldStrength
+        super.init(name: name, health: health, position: position, weapon: weapon, remainingFirePower: remainingFirePower )
+    }
     override func wasHit() {
         if shieldStrength > 0 {
             shieldStrength -= 5
@@ -48,11 +68,13 @@ class ShieldedShip: Fighter {
         }
     }
 }
+
 /*:
  Note that each class above has an error by the class declaration that says "Class has no initializers." Unlike structs, classes do not come with memberwise initializers because the standard memberwise initializers don't always play nicely with inheritance. You can get rid of the error by providing default values for everything, but it is common and better practice to simply write your own initializer. Go to the declaration of `Spaceship` and add an initializer that takes in an argument for each property on `Spaceship` and sets the properties accordingly.
 
  Then create an instance of `Spaceship` below called `falcon`. Use the memberwise initializer you just created. The ship's name should be "Falcon."
  */
+let falcon = Spaceship(name: "Falcon", health: 5, position: 0)
 
 
 /*:
@@ -60,19 +82,27 @@ class ShieldedShip: Fighter {
 
  Then create an instance of `Fighter` below called `destroyer`. Use the memberwise initializer you just created. The ship's name should be "Destroyer."
  */
-
+let destroyer = Fighter(name: "Destroyer", health: 77, position: 0, weapon: "", remainingFirePower: 20)
 
 /*:
  Now go add an initializer to `ShieldedShip` that takes an argument for each property on `ShieldedShip`, `Fighter`, and `Spaceship`, and sets the properties accordingly. Remember that you can call through to the initializer on `Fighter` using `super.init`.
 
  Then create an instance of `ShieldedShip` below called `defender`. Use the memberwise initializer you just created. The ship's name should be "Defender."
  */
-
+let defender = ShieldedShip(name: "Defender", health: 77, position: 0, weapon: "", remainingFirePower: 20, shieldStrength: 2)
 
 /*:
  Create a new instance of `Spaceship` called `sameShip` and set it equal to `falcon`. Print out the position of `sameShip` and `falcon`, then call `moveLeft()` on `sameShip` and print out the position of `sameShip` and `falcon` again. Did both positions change? Why? If both were structs instead of classes, would it be the same? Why or why not? Provide your answer in a comment or print statement below.
  */
+let sameShip = falcon
+print(sameShip.position)
+print(falcon.position)
 
+sameShip.moveLeft()
+print(sameShip.position)
+print(falcon.position)
+
+// They are same because their information is stored at smame location for two since they are instances of the class. If they were struct it would be different since let sameShip = falcon will only "copy" falcon.
 
 /*:
 
