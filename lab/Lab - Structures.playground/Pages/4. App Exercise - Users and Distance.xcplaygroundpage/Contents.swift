@@ -51,6 +51,7 @@ print(mile)
 /*:
  Now create another instance of `Distance` and give it some other distance. Ensure that both properties are set correctly.
  */
-
+var kilos = Distance(distanceInFeet: 100)
+print(kilos)
 
 //: [Previous](@previous)  |  page 4 of 10  |  [Next: Exercise - Methods](@next)
