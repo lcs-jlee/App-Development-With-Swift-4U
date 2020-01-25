@@ -7,20 +7,51 @@
  */
 
 
+struct SwimmingWorkout {
+    enum Stroke {
+        case freestyle, butterfly, backstroke, breaststroke
+    }
+    var distance: Double
+    var time: Double
+    var stroke: Stroke
+    
+    func save() {
+        switch stroke {
+        case .freestyle:
+            freestyleWorkouts.append(self)
+        case .butterfly:
+            butterflyWorkouts.append(self)
+        case .breaststroke:
+            breaststrokeWorkouts.append(self)
+        case .backstroke:
+            backstrokeWorkouts.append(self)
+        
+        }
+    }
+}
+
+
+
 /*:
  Allowing `stroke` to be of type `String` isn't very type-safe. Inside the `SwimmingWorkout` struct, create an enum called `Stroke` that has cases for `freestyle`, `butterfly`, `backstroke`, and `breaststroke`. Change the type of `stroke` from `String` to `Stroke`. Create two instances of `SwimmingWorkout` objects.
  */
-
-
+var objectone = SwimmingWorkout(distance: 1, time: 10, stroke: .freestyle)
+var objecttwo = SwimmingWorkout(distance: 2, time: 12, stroke: .backstroke)
 /*:
  Now imagine you want to log swimming workouts separately based on the swimming stroke. You might use arrays as static variables on `SwimmingWorkout` for this. Add four static variables, `freestyleWorkouts`, `butterflyWorkouts`, `backstrokeWorkouts`, and `breaststrokeWorkouts`, to `SwimmingWorkout` above. Each should be of type `[SwimmingWorkout]` and should default to empty arrays.
  */
-
+var freestyleWorkouts: [SwimmingWorkout]
+var butterflyWorkouts: [SwimmingWorkout]
+var breaststrokeWorkouts: [SwimmingWorkout]
+var backstrokeWorkouts: [SwimmingWorkout]
 
 /*:
  Now add an instance method to `SwimmingWorkout` called `save()` that takes no parameters and has no return value. This method will add its instance to the static array on `SwimmingWorkout` that corresponds to its swimming stroke. Inside `save()` write a switch statement that switches on the instance's `stroke` property, and appends `self` to the proper array. Call save on the two instances of `SwimmingWorkout` that you created above, and then print the array(s) to which they should have been added to see if your `save` method works properly.
  */
-
+objectone.save()
+objecttwo.save()
+print(freestyleWorkouts)
+print(backstrokeWorkouts)
 
 /*:
 
